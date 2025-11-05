@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tours Privados | Guatapé • Santa Fe • Aeropuerto</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="description" content="Tours y traslados privados en camioneta: Guatapé, Santa Fe de Antioquia y Aeropuerto (JMC/Olaya). Chofer confiable, WiFi a bordo, agua y frutas." />
+  <style>
+    /* Simple fade for route changes */
+    .route { display: none; }
+    .route.active { display: block; animation: fade .25s ease-in; }
+    @keyframes fade { from {opacity:.4; transform: translateY(4px)} to {opacity:1; transform: translateY(0)} }
+    /* Mimic checkbox look for radios */
+    input[type="radio"].chkbox-look + label::before { content:""; display:inline-block; width:1.1rem; height:1.1rem; border:2px solid #64748b; border-radius:.25rem; margin-right:.5rem; vertical-align:middle }
+    input[type="radio"].chkbox-look:checked + label::before { background:#1f2937; border-color:#1f2937 }
+    /* Toggle switch */
+    .switch { position: relative; width: 44px; height: 24px; display:inline-block }
+    .switch input { opacity:0; width:0; height:0 }
+    .slider { position:absolute; cursor:pointer; top:0; left:0; right:0; bottom:0; background:#cbd5e1; transition:.2s; border-radius:9999px }
+    .slider:before { position:absolute; content:""; height:18px; width:18px; left:3px; top:3px; background:white; transition:.2s; border-radius:9999px }
+    input:checked + .slider { background:#111827 }
+    input:checked + .slider:before { transform: translateX(20px) }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+  <!-- Language & Topbar -->
+  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#/" class="font-extrabold text-xl">Private Tours Medellín</a>
+      <div class="flex items-center gap-3">
+        <nav class="hidden sm:flex gap-4 text-sm">
+          <a href="#/" class="hover:text-slate-900" data-i18n="nav_home">Inicio</a>
+          <a href="#/guatape" class="hover:text-slate-900">Guatapé</a>
+          <a href="#/santafe" class="hover:text-slate-900">Santa Fe</a>
+          <a href="#/aeropuerto" class="hover:text-slate-900" data-i18n="nav_airport">Aeropuerto</a>
+          <a href="#/contacto" class="hover:text-slate-900" data-i18n="nav_contact">Contacto</a>
+        </nav>
+        <!-- Language Switcher -->
+        <div class="flex items-center gap-2 text-sm">
+          <button id="lang-es" class="px-3 py-1 rounded border border-slate-300" aria-pressed="true">ES</button>
+          <button id="lang-en" class="px-3 py-1 rounded border border-slate-300" aria-pressed="false">EN</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="route active" id="route-home">
+    <div class="relative isolate overflow-hidden">
+      <div class="max-w-6xl mx-auto px-4 py-10 md:py-16">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h1 class="text-3xl md:text-5xl font-black leading-tight" data-i18n="hero_title">Explora Antioquia con un tour <span class="whitespace-nowrap">100% privado</span></h1>
+            <p class="mt-4 text-lg" data-i18n="hero_sub">Guatapé, Santa Fe de Antioquia o traslados al Aeropuerto JMC/Olaya. Horarios flexibles, vehículo de lujo, conductor confiable.</p>
+            <div class="mt-6 flex gap-3">
+              <a href="#grid" class="px-5 py-3 rounded-xl bg-slate-900 text-white font-semibold" data-i18n="cta_explore">Ver opciones</a>
+              <a href="https://calendly.com/comercial-grupo-git/new-meeting" target="_blank" class="px-5 py-3 rounded-xl border border-slate-300 font-semibold" data-i18n="cta_schedule">Programar ahora</a>
+            </div>
+            <ul class="mt-6 text-sm text-slate-600 grid grid-cols-2 gap-y-2">
+              <li>WiFi*</li><li data-i18n="amen_charger">Cargador a bordo</li>
+              <li data-i18n="amen_water">Agua + frutas</li><li data-i18n="amen_stories">Historias y datos curiosos</li>
+            </ul>
+            <p class="text-xs text-slate-400 mt-1">*según cobertura</p>
+          </div>
+          <div class="aspect-[4/3] md:aspect-[5/4] w-full rounded-2xl bg-center bg-cover shadow-xl" id="hero-image" style="background-image:url('https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1400&auto=format&fit=crop');"></div>
+        </div>
+
+        <!-- GRID CARDS -->
+        <h2 id="grid" class="mt-10 md:mt-16 text-2xl font-extrabold" data-i18n="pick_dest">Elige tu destino</h2>
+        <div class="mt-6 grid md:grid-cols-3 gap-6">
+          <!-- Guatapé card -->
+          <article class="group bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
+            <button class="w-full text-left" onclick="go('#/guatape')">
+              <img src="https://images.unsplash.com/photo-1611339555311-8f40a2186cd3?q=80&w=1200&auto=format&fit=crop" alt="Peñol" class="h-48 w-full object-cover">
+              <div class="p-5">
+                <h3 class="text-xl font-bold">Guatapé / Peñol</h3>
+                <p class="text-slate-600 text-sm" data-i18n="card_guatape">Sube la Piedra del Peñol y camina por el malecón de colores.</p>
+                <span class="inline-block mt-3 px-3 py-1 text-xs font-semibold rounded-full bg-slate-900 text-white" data-i18n="cta_card">Ver detalles</span>
+              </div>
+            </button>
+          </article>
+          <!-- Santa Fe card -->
+          <article class="group bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
+            <button class="w-full text-left" onclick="go('#/santafe')">
+              <img src="https://images.unsplash.com/photo-1585582860742-87c6104c5962?q=80&w=1200&auto=format&fit=crop" alt="Santa Fe de Antioquia" class="h-48 w-full object-cover">
+              <div class="p-5">
+                <h3 class="text-xl font-bold">Santa Fe de Antioquia</h3>
+                <p class="text-slate-600 text-sm" data-i18n="card_santafe">Centro histórico, Puente de Occidente y tarde de piscina.</p>
+                <span class="inline-block mt-3 px-3 py-1 text-xs font-semibold rounded-full bg-slate-900 text-white" data-i18n="cta_card">Ver detalles</span>
+              </div>
+            </button>
+          </article>
+          <!-- Aeropuerto card -->
+          <article class="group bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
+            <button class="w-full text-left" onclick="go('#/aeropuerto')">
+              <img src="https://images.unsplash.com/photo-1487252665478-5708385029a9?q=80&w=1200&auto=format&fit=crop" alt="Aeropuerto JMC" class="h-48 w-full object-cover">
+              <div class="p-5">
+                <h3 class="text-xl font-bold" data-i18n="air_title">Traslado Aeropuerto JMC</h3>
+                <p class="text-slate-600 text-sm" data-i18n="card_airport">Traslado cómodo y seguro entre Medellín y JMC/Olaya.</p>
+                <span class="inline-block mt-3 px-3 py-1 text-xs font-semibold rounded-full bg-slate-900 text-white" data-i18n="cta_card">Ver detalles</span>
+              </div>
+            </button>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESTINATION TEMPLATES -->
+  <main class="max-w-5xl mx-auto px-4">
+    <!-- Guatapé -->
+    <section class="route" id="route-guatape">
+      <div class="py-8">
+        <a href="#/" class="text-sm text-slate-500 hover:text-slate-800">← <span data-i18n="back_home">Volver al inicio</span></a>
+        <div class="mt-3 aspect-[16/9] w-full rounded-2xl overflow-hidden bg-slate-200">
+          <img id="carousel-guatape" src="" alt="Guatapé" class="w-full h-full object-cover">
+        </div>
+        <div class="flex justify-between items-baseline mt-6">
+          <h2 class="text-3xl md:text-4xl font-black">Tour Guatapé / Peñol</h2>
+          <div class="text-right">
+            <p class="text-xs text-slate-500" data-i18n="price_from">Precio:</p>
+            <p id="price-guatape" class="text-2xl font-extrabold">—</p>
+          </div>
+        </div>
+        <fieldset class="mt-4 grid md:grid-cols-3 gap-3">
+          <div>
+            <input class="chkbox-look peer hidden" type="radio" name="g-size" id="g-4" checked>
+            <label for="g-4" class="flex items-center px-4 py-3 rounded-xl border peer-checked:border-slate-900 cursor-pointer">
+              <span>4 o menos personas</span>
+            </label>
+          </div>
+          <div>
+            <input class="chkbox-look peer hidden" type="radio" name="g-size" id="g-56">
+            <label for="g-56" class="flex items-center px-4 py-3 rounded-xl border peer-checked:border-slate-900 cursor-pointer">
+              <span>5–6 personas</span>
+            </label>
+          </div>
+          <div class="flex items-center gap-3 p-3 border rounded-xl">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <span data-i18n="opt_bil">Conductor Bilingüe</span>
+              <span class="switch"><input type="checkbox" id="g-bil"><span class="slider"></span></span>
+            </label>
+            <span class="text-xs text-slate-500" data-i18n="bil_extra">(+$50.000)</span>
+          </div>
+        </fieldset>
+        <p class="mt-4 text-slate-700" data-i18n="desc_guatape">Viaje desde Medellín a Guatapé ida y vuelta, pasando por 4 sitios turísticos: Viejo Peñol, Casa al revés, Piedra del Peñol y Malecón de Guatapé. Viaje con tranquilidad, seguridad, WiFi a bordo (según cobertura), cargador de celular, agua y frutas, y la mejor experiencia con las historias y los datos curiosos del conductor. Manejo seguro, vehículo en perfectas condiciones de lujo y muy cómodo. Salga a la hora que quiera y vuelva a la hora que quiera.</p>
+        <div class="mt-6 flex gap-3">
+          <a class="px-5 py-3 rounded-xl bg-slate-900 text-white font-semibold" href="https://calendly.com/comercial-grupo-git/new-meeting" target="_blank" data-i18n="btn_book">Programar y contactar</a>
+          <a href="#/contacto" class="px-5 py-3 rounded-xl border border-slate-300 font-semibold" data-i18n="btn_contact">Enviar consulta</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Santa Fe -->
+    <section class="route" id="route-santafe">
+      <div class="py-8">
+        <a href="#/" class="text-sm text-slate-500 hover:text-slate-800">← <span data-i18n="back_home">Volver al inicio</span></a>
+        <div class="mt-3 aspect-[16/9] w-full rounded-2xl overflow-hidden bg-slate-200">
+          <img id="carousel-santafe" src="" alt="Santa Fe de Antioquia" class="w-full h-full object-cover">
+        </div>
+        <div class="flex justify-between items-baseline mt-6">
+          <h2 class="text-3xl md:text-4xl font-black">Tour Santa Fe de Antioquia</h2>
+          <div class="text-right">
+            <p class="text-xs text-slate-500" data-i18n="price_from">Precio:</p>
+            <p id="price-santafe" class="text-2xl font-extrabold">—</p>
+          </div>
+        </div>
+        <fieldset class="mt-4 grid md:grid-cols-3 gap-3">
+          <div>
+            <input class="chkbox-look peer hidden" type="radio" name="s-size" id="s-4" checked>
+            <label for="s-4" class="flex items-center px-4 py-3 rounded-xl border peer-checked:border-slate-900 cursor-pointer">
+              <span>4 o menos personas</span>
+            </label>
+          </div>
+          <div>
+            <input class="chkbox-look peer hidden" type="radio" name="s-size" id="s-56">
+            <label for="s-56" class="flex items-center px-4 py-3 rounded-xl border peer-checked:border-slate-900 cursor-pointer">
+              <span>5–6 personas</span>
+            </label>
+          </div>
+          <div class="flex items-center gap-3 p-3 border rounded-xl">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <span data-i18n="opt_bil">Conductor Bilingüe</span>
+              <span class="switch"><input type="checkbox" id="s-bil"><span class="slider"></span></span>
+            </label>
+            <span class="text-xs text-slate-500" data-i18n="bil_extra">(+$50.000)</span>
+          </div>
+        </fieldset>
+        <p class="mt-4 text-slate-700" data-i18n="desc_santafe">Viaje desde Medellín a Santa Fe de Antioquia ida y vuelta, pasando por el pueblo de Santa Fe, el Puente de Occidente y descansando en una casa con piscina en Santa Fe Campestre por una tarde. Viaje con tranquilidad, seguridad, WiFi a bordo (según cobertura), cargador de celular, agua y frutas, y la mejor experiencia con las historias y los datos curiosos del conductor. Manejo seguro, vehículo en perfectas condiciones de lujo y muy cómodo. Salga a la hora que quiera y vuelva a la hora que quiera.</p>
+        <div class="mt-6 flex gap-3">
+          <a class="px-5 py-3 rounded-xl bg-slate-900 text-white font-semibold" href="https://calendly.com/comercial-grupo-git/new-meeting" target="_blank" data-i18n="btn_book">Programar y contactar</a>
+          <a href="#/contacto" class="px-5 py-3 rounded-xl border border-slate-300 font-semibold" data-i18n="btn_contact">Enviar consulta</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Aeropuerto -->
+    <section class="route" id="route-aeropuerto">
+      <div class="py-8">
+        <a href="#/" class="text-sm text-slate-500 hover:text-slate-800">← <span data-i18n="back_home">Volver al inicio</span></a>
+        <div class="mt-3 aspect-[16/9] w-full rounded-2xl overflow-hidden bg-slate-200">
+          <img id="carousel-aeropuerto" src="" alt="Aeropuerto JMC" class="w-full h-full object-cover">
+        </div>
+        <div class="flex justify-between items-baseline mt-6">
+          <h2 class="text-3xl md:text-4xl font-black" data-i18n="air_h2">Viaje al Aeropuerto JMC Rionegro</h2>
+          <div class="text-right">
+            <p class="text-xs text-slate-500" data-i18n="price_from">Precio:</p>
+            <p id="price-aeropuerto" class="text-2xl font-extrabold">—</p>
+          </div>
+        </div>
+        <div class="mt-4 grid md:grid-cols-3 gap-3">
+          <div>
+            <input class="chkbox-look peer hidden" type="radio" name="a-size" id="a-4" checked>
+            <label for="a-4" class="flex items-center px-4 py-3 rounded-xl border peer-checked:border-slate-900 cursor-pointer">
+              <span data-i18n="opt_4">4 o menos personas</span>
+            </label>
+          </div>
+          <div>
+            <input class="chkbox-look peer hidden" type="radio" name="a-size" id="a-56">
+            <label for="a-56" class="flex items-center px-4 py-3 rounded-xl border peer-checked:border-slate-900 cursor-pointer">
+              <span data-i18n="opt_56">5–6 personas</span>
+            </label>
+          </div>
+          <div class="flex items-center gap-3 p-3 border rounded-xl">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <span data-i18n="opt_bil">Conductor Bilingüe</span>
+              <span class="switch"><input type="checkbox" id="a-bil"><span class="slider"></span></span>
+            </label>
+            <span class="text-xs text-slate-500" data-i18n="bil_extra">(+$50.000)</span>
+          </div>
+        </div>
+        <p class="mt-4 text-slate-700" data-i18n="desc_air">Viaje desde Medellín al aeropuerto de Rionegro, o programe su recogida con anticipación. Viaje con tranquilidad, seguridad, WiFi a bordo (según cobertura), cargador de celular, agua y frutas, y la mejor experiencia con las historias y los datos curiosos del conductor. Manejo seguro, vehículo en perfectas condiciones de lujo y muy cómodo. Salga a la hora que quiera y vuelva a la hora que quiera.</p>
+        <div class="mt-6 flex gap-3">
+          <a class="px-5 py-3 rounded-xl bg-slate-900 text-white font-semibold" href="https://calendly.com/comercial-grupo-git/new-meeting" target="_blank" data-i18n="btn_book">Programar y contactar</a>
+          <a href="#/contacto" class="px-5 py-3 rounded-xl border border-slate-300 font-semibold" data-i18n="btn_contact">Enviar consulta</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="route" id="route-contacto">
+      <div class="py-8">
+        <a href="#/" class="text-sm text-slate-500 hover:text-slate-800">← <span data-i18n="back_home">Volver al inicio</span></a>
+        <h2 class="mt-2 text-3xl md:text-4xl font-black" data-i18n="contact_h2">Contacto</h2>
+        <p class="mt-2 text-slate-600" data-i18n="contact_desc">Cuéntame la fecha, número de personas y destino. Te responderé rápido.</p>
+
+        <form id="contact-form" class="mt-6 grid md:grid-cols-2 gap-4 bg-white p-5 rounded-2xl shadow">
+          <input type="hidden" name="lang" id="form-lang" value="es">
+          <div>
+            <label class="block text-sm font-semibold" data-i18n="f_name">Nombre</label>
+            <input name="name" required class="mt-1 w-full px-3 py-2 rounded-xl border" placeholder="Tu nombre" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold">Email</label>
+            <input name="email" type="email" required class="mt-1 w-full px-3 py-2 rounded-xl border" placeholder="tu@email.com" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold" data-i18n="f_phone">WhatsApp</label>
+            <input name="phone" class="mt-1 w-full px-3 py-2 rounded-xl border" placeholder="+57 300 000 0000" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold" data-i18n="f_dest">Destino</label>
+            <select name="route" class="mt-1 w-full px-3 py-2 rounded-xl border">
+              <option>Guatapé</option>
+              <option>Santa Fe de Antioquia</option>
+              <option>Aeropuerto JMC / Olaya</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold" data-i18n="f_date">Fecha</label>
+            <input name="date" type="date" class="mt-1 w-full px-3 py-2 rounded-xl border" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold" data-i18n="f_time">Hora</label>
+            <input name="time" type="time" class="mt-1 w-full px-3 py-2 rounded-xl border" />
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-sm font-semibold" data-i18n="f_pickup">Dirección de recogida</label>
+            <input name="pickup" class="mt-1 w-full px-3 py-2 rounded-xl border" placeholder="Hotel/dirección" />
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-sm font-semibold" data-i18n="f_msg">Mensaje</label>
+            <textarea name="message" rows="4" class="mt-1 w-full px-3 py-2 rounded-xl border" placeholder="Detalles adicionales"></textarea>
+          </div>
+          <div class="md:col-span-2 flex gap-3 items-center">
+            <button class="px-5 py-3 rounded-xl bg-slate-900 text-white font-semibold" type="submit" data-i18n="btn_send">Enviar</button>
+            <a id="wa-fallback" target="_blank" class="px-5 py-3 rounded-xl border border-slate-300 font-semibold" href="#" data-i18n="btn_whatsapp">Enviar por WhatsApp</a>
+            <span id="form-status" class="text-sm"></span>
+          </div>
+        </form>
+
+        <div class="mt-8 text-sm text-slate-600">
+          <p class="font-semibold">MAS INFO:</p>
+          <p>CAMILO RESTREPO</p>
+          <p>3002294748</p>
+          <p><a class="underline" href="mailto:camilortpo@hotmail.com">camilortpo@hotmail.com</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="mt-10 border-t border-slate-200 bg-white">
+    <div class="max-w-6xl mx-auto px-4 py-6 text-sm text-slate-600 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+      <p>© <span id="year"></span> Private Tours Medellín</p>
+      <nav class="flex gap-4">
+        <a href="#/" data-i18n="nav_home">Inicio</a>
+        <a href="#/contacto" data-i18n="nav_contact">Contacto</a>
+        <a href="https://calendly.com/comercial-grupo-git/new-meeting" target="_blank">Calendly</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // ====== CONFIG (EDITA AQUÍ TUS IMÁGENES Y ENDPOINT) ======
+    const IMAGES = {
+      guatape: [
+        'img/guatape-1.jpg',
+        'img/guatape-2.jpg'
+      ],
+      santafe: [
+        'img/santafe-1.jpg',
+        'img/santafe-2.jpg'
+      ],
+      aeropuerto: [
+        'img/aeropuerto-1.jpg',
+        'img/aeropuerto-2.jpg'
+      ]
+    };
+
+    // Endpoint donde recibes el formulario (POST JSON)
+    // TODO: reemplazar por tu URL real (por ejemplo, un webhook o endpoint de tu backend)
+    const CONTACT_ENDPOINT = 'https://formspree.io/f/TU_ID_DE_FORMSPREE';
+
+    // ====== I18N ======
+    const t = {
+      es: {
+        hero_title: 'Explora Antioquia con un tour 100% privado',
+        hero_sub: 'Guatapé, Santa Fe de Antioquia o traslados al Aeropuerto JMC/Olaya. Horarios flexibles, vehículo de lujo, conductor confiable.',
+        cta_explore: 'Ver opciones',
+        cta_schedule: 'Programar ahora',
+        amen_charger: 'Cargador a bordo',
+        amen_water: 'Agua + frutas',
+        amen_stories: 'Historias y datos curiosos',
+        pick_dest: 'Elige tu destino',
+        card_guatape: 'Sube la Piedra del Peñol y camina por el malecón de colores.',
+        card_santafe: 'Centro histórico, Puente de Occidente y tarde de piscina.',
+        air_title: 'Traslado Aeropuerto JMC',
+        card_airport: 'Traslado cómodo y seguro entre Medellín y JMC/Olaya.',
+        cta_card: 'Ver detalles',
+        back_home: 'Volver al inicio',
+        price_from: 'Precio:',
+        desc_guatape: 'Viaje desde Medellín a Guatapé ida y vuelta, pasando por 4 sitios turísticos: Viejo Peñol, Casa al revés, Piedra del Peñol y Malecón de Guatapé. Viaje con tranquilidad, seguridad, WiFi a bordo (según cobertura), cargador de celular, agua y frutas, y la mejor experiencia con las historias y los datos curiosos del conductor. Manejo seguro, vehículo en perfectas condiciones de lujo y muy cómodo. Salga a la hora que quiera y vuelva a la hora que quiera.',
+        desc_santafe: 'Viaje desde Medellín a Santa Fe de Antioquia ida y vuelta, pasando por el pueblo de Santa Fe, el Puente de Occidente y descansando en una casa con piscina en Santa Fe Campestre por una tarde. Viaje con tranquilidad, seguridad, WiFi a bordo (según cobertura), cargador de celular, agua y frutas, y la mejor experiencia con las historias y los datos curiosos del conductor. Manejo seguro, vehículo en perfectas condiciones de lujo y muy cómodo. Salga a la hora que quiera y vuelva a la hora que quiera.',
+        air_h2: 'Viaje al Aeropuerto JMC Rionegro',
+        opt_4: '4 o menos personas',
+        opt_56: '5–6 personas',
+        opt_bil: 'Conductor Bilingüe',
+        bil_extra: '(+$50.000)',
+        btn_book: 'Programar y contactar',
+        btn_contact: 'Enviar consulta',
+        nav_home: 'Inicio', nav_airport: 'Aeropuerto', nav_contact: 'Contacto',
+        contact_h2: 'Contacto',
+        contact_desc: 'Cuéntame la fecha, número de personas y destino. Te responderé rápido.',
+        f_name: 'Nombre', f_phone: 'WhatsApp', f_dest: 'Destino', f_date: 'Fecha', f_time: 'Hora', f_pickup: 'Dirección de recogida', f_msg: 'Mensaje',
+        btn_send: 'Enviar', btn_whatsapp: 'Enviar por WhatsApp',
+      },
+      en: {
+        hero_title: 'Explore Antioquia with a 100% private tour',
+        hero_sub: 'Guatapé, Santa Fe de Antioquia or Airport transfers (JMC/Olaya). Flexible times, premium vehicle, trusted driver.',
+        cta_explore: 'See options',
+        cta_schedule: 'Book now',
+        amen_charger: 'On‑board charger',
+        amen_water: 'Water & fruit',
+        amen_stories: 'Stories & fun facts',
+        pick_dest: 'Choose your destination',
+        card_guatape: 'Climb El Peñol rock and stroll the colorful boardwalk.',
+        card_santafe: 'Historic center, Puente de Occidente and pool afternoon.',
+        air_title: 'Airport Transfer (JMC)',
+        card_airport: 'Comfortable, safe rides between Medellín and JMC/Olaya.',
+        cta_card: 'View details',
+        back_home: 'Back to home',
+        price_from: 'Price:',
+        desc_guatape: 'Round trip from Medellín to Guatapé visiting: Viejo Peñol, Casa al Revés, El Peñol Rock and the boardwalk. Safe, relaxed ride with WiFi (coverage permitting), phone charger, water and fruit, plus stories and fun facts from your driver. Luxury, very comfortable vehicle. Depart and return whenever you want.',
+        desc_santafe: 'Round trip from Medellín to Santa Fe de Antioquia visiting town center, Puente de Occidente and a relaxing afternoon with pool at Santa Fe Campestre. Safe, relaxed ride with WiFi (coverage permitting), phone charger, water and fruit, plus stories and fun facts from your driver. Luxury, very comfortable vehicle. Depart and return whenever you want.',
+        air_h2: 'Transfer to JMC Airport (Rionegro)',
+        opt_4: 'Up to 4 people',
+        opt_56: '5–6 people',
+        opt_bil: 'Bilingual driver',
+        bil_extra: '(+50,000 COP)',
+        btn_book: 'Book & contact',
+        btn_contact: 'Send inquiry',
+        nav_home: 'Home', nav_airport: 'Airport', nav_contact: 'Contact',
+        contact_h2: 'Contact',
+        contact_desc: 'Tell me your date, group size and destination. I will reply quickly.',
+        f_name: 'Name', f_phone: 'WhatsApp', f_dest: 'Destination', f_date: 'Date', f_time: 'Time', f_pickup: 'Pick‑up address', f_msg: 'Message',
+        btn_send: 'Send', btn_whatsapp: 'Send via WhatsApp',
+      }
+    };
+
+    // ====== ROUTER ======
+    const routes = {
+      '#/': 'route-home',
+      '#/guatape': 'route-guatape',
+      '#/santafe': 'route-santafe',
+      '#/aeropuerto': 'route-aeropuerto',
+      '#/contacto': 'route-contacto'
+    };
+    function go(hash) { location.hash = hash; }
+    function renderRoute() {
+      const all = document.querySelectorAll('.route');
+      all.forEach(el => el.classList.remove('active'));
+      const id = routes[location.hash] || 'route-home';
+      document.getElementById(id).classList.add('active');
+    }
+    window.addEventListener('hashchange', renderRoute);
+
+    // ====== CAROUSELS (very simple auto-advance) ======
+    function startCarousel(key, imgId, interval=3500) {
+      const arr = IMAGES[key] || [];
+      const img = document.getElementById(imgId);
+      if (!img) return;
+      let idx = 0;
+      function show() { img.src = arr.length ? arr[idx % arr.length] : 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1600&auto=format&fit=crop'; idx++; }
+      show();
+      setInterval(show, interval);
+    }
+
+    // ====== PRICES ======
+    const formatCOP = v => new Intl.NumberFormat('es-CO', { style:'currency', currency:'COP', maximumFractionDigits:0 }).format(v);
+
+    function updatePriceGuatape() {
+      const priceEl = document.getElementById('price-guatape');
+      const g56 = document.getElementById('g-56').checked;
+      const bil = document.getElementById('g-bil').checked;
+      let price = g56 ? 550000 : 450000;
+      if (bil) price += 50000; // extra bilingüe como en aeropuerto
+      priceEl.textContent = formatCOP(price);
+    }
+
+    function updatePriceSantafe() {
+      const priceEl = document.getElementById('price-santafe');
+      const s56 = document.getElementById('s-56').checked;
+      const bil = document.getElementById('s-bil').checked;
+      let price = s56 ? 550000 : 450000;
+      if (bil) price += 50000; // extra bilingüe como en aeropuerto
+      priceEl.textContent = formatCOP(price);
+    }
+
+    function updatePriceAeropuerto() {
+      const priceEl = document.getElementById('price-aeropuerto');
+      const a4 = document.getElementById('a-4').checked;
+      const a56 = document.getElementById('a-56').checked;
+      const bil = document.getElementById('a-bil').checked;
+      let price = a56 ? 220000 : 170000;
+      if (bil) price += 50000; // extra
+      priceEl.textContent = formatCOP(price);
+    }
+
+    // Bind price handlers
+    ['g-4','g-56','g-bil'].forEach(id=> document.addEventListener('change', e=>{ if(e.target && e.target.id===id) updatePriceGuatape(); }));
+    ['s-4','s-56','s-bil'].forEach(id=> document.addEventListener('change', e=>{ if(e.target && e.target.id===id) updatePriceSantafe(); }));
+    ['a-4','a-56','a-bil'].forEach(id=> document.addEventListener('change', e=>{ if(e.target && e.target.id===id) updatePriceAeropuerto(); }));
+
+    // ====== LANGUAGE ======
+    function setLang(lang){
+      localStorage.setItem('lang', lang);
+      document.documentElement.lang = lang === 'en' ? 'en' : 'es';
+      document.getElementById('form-lang').value = lang;
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const k = el.dataset.i18n;
+        el.textContent = t[lang][k];
+      });
+      document.getElementById('lang-es').setAttribute('aria-pressed', lang==='es');
+      document.getElementById('lang-en').setAttribute('aria-pressed', lang==='en');
+    }
+
+    // ====== CONTACT FORM ======
+    const form = document.getElementById('contact-form');
+    form?.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const status = document.getElementById('form-status');
+      status.textContent = '...';
+      const data = Object.fromEntries(new FormData(form).entries());
+      try {
+        const res = await fetch(CONTACT_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) });
+        if(!res.ok) throw new Error('HTTP '+res.status);
+        status.textContent = (localStorage.getItem('lang')||'es')==='en' ? 'Sent! I will get back to you shortly.' : '¡Enviado! Te responderé pronto.';
+        form.reset();
+      } catch (err){
+        status.textContent = (localStorage.getItem('lang')||'es')==='en' ? 'Error sending. Try WhatsApp.' : 'Error al enviar. Prueba por WhatsApp.';
+      }
+    });
+
+    // WhatsApp fallback link
+    function buildWA(){
+      const lang = localStorage.getItem('lang')||'es';
+      const name = form?.elements['name']?.value||'';
+      const route = form?.elements['route']?.value||'';
+      const date = form?.elements['date']?.value||'';
+      const time = form?.elements['time']?.value||'';
+      const pickup = form?.elements['pickup']?.value||'';
+      const msg = lang==='en'
+        ? `Hello, I'm ${name}. I want to book: ${route}. Date ${date} ${time}. Pick-up: ${pickup}.`
+        : `Hola, soy ${name}. Quiero reservar: ${route}. Fecha ${date} ${time}. Recogida: ${pickup}.`;
+      const url = 'https://wa.me/573002294748?text=' + encodeURIComponent(msg);
+      document.getElementById('wa-fallback').href = url;
+    }
+    document.getElementById('wa-fallback')?.addEventListener('click', buildWA);
+
+    // ====== INIT ======
+    (function init(){
+      renderRoute();
+      startCarousel('guatape','carousel-guatape');
+      startCarousel('santafe','carousel-santafe');
+      startCarousel('aeropuerto','carousel-aeropuerto');
+      updatePriceGuatape();
+      updatePriceSantafe();
+      updatePriceAeropuerto();
+      const saved = localStorage.getItem('lang')||'es';
+      setLang(saved);
+      document.getElementById('lang-es').addEventListener('click', ()=> setLang('es'));
+      document.getElementById('lang-en').addEventListener('click', ()=> setLang('en'));
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
